@@ -35,5 +35,5 @@ it('calculates SHA1 fingerprint (hex)', async () => {
 
 it('can handle non-existing file', async () => {
 	const input = fs.createReadStream('test/404.png');
-	await expect(() => hash(input)).rejects.toThrowError(/^ENOENT: no such file or directory, open '.+'$/i);
+	await expect(() => hash(input)).rejects.toThrow(/^ENOENT: no such file or directory, open '.+'$/i);
 });

@@ -34,15 +34,15 @@ describe('Create Cache', () => {
 		parser.on('progress', onProgress);
 		await parser.open();
 		expect(parser.getPageNum()).toBe(1);
-		expect(getPage).toBeCalledTimes(1);
+		expect(getPage).toHaveBeenCalledTimes(1);
 		getPage.mockClear();
-		expect(onProgress).toBeCalledWith({ current: 1, limit: 1 });
+		expect(onProgress).toHaveBeenCalledWith({ current: 1, limit: 1 });
 	});
 
 	it('reads cache', async () => {
 		const image1 = parser.getImage(0);
 		const image2 = parser.getImage(0);
-		expect(getPage).toBeCalledTimes(0);
+		expect(getPage).toHaveBeenCalledTimes(0);
 
 		const cmp = await compareImage(image1, image2);
 		expect(cmp.diff).toBe(0);
@@ -58,13 +58,13 @@ describe('Reuse Cache', () => {
 		const onProgress = jest.fn<(progress: Progress) => void>();
 		parser.on('progress', onProgress);
 		await parser.open();
-		expect(onProgress).not.toBeCalled();
+		expect(onProgress).not.toHaveBeenCalled();
 	});
 
 	it('reads cache', async () => {
 		const image1 = parser.getImage(0);
 		const image2 = parser.getImage(0);
-		expect(getPage).toBeCalledTimes(0);
+		expect(getPage).toHaveBeenCalledTimes(0);
 
 		const cmp = await compareImage(image1, image2);
 		expect(cmp.diff).toBe(0);

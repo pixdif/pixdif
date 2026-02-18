@@ -31,7 +31,7 @@ it('can change cache directory', () => {
 });
 
 it('cannot execute 0 tasks', async () => {
-	await expect(() => cmp.exec()).rejects.toThrowError('Please add one task at least');
+	await expect(() => cmp.exec()).rejects.toThrow('Please add one task at least');
 });
 
 it('adds tasks', async () => {

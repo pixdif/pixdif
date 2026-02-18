@@ -62,5 +62,5 @@ it('compres 2 different PNG images', async () => {
 
 it('compares unsupported files', async () => {
 	const script = 'test/core/Comparator.spec.ts';
-	await expect(() => compare(script, script)).rejects.toThrowError(`Failed to parse ${script}. Please install @pixdif/ts-parser and try again.`);
+	await expect(() => compare(script, script)).rejects.toThrow(`Failed to parse ${script}. Please install @pixdif/ts-parser and try again.`);
 });

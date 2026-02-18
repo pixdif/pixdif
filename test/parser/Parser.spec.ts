@@ -15,7 +15,7 @@ describe('Normal', () => {
 		const openFile = jest.spyOn(parser, 'openFile');
 		expect(await parser.getFingerprint()).toBe('987cfcfebb56e76b18a3649100882f3555ebc70e');
 		await parser.open();
-		expect(openFile).toBeCalledTimes(1);
+		expect(openFile).toHaveBeenCalledTimes(1);
 	});
 
 	test('Supports multiple hash algorithm', async () => {
@@ -50,13 +50,13 @@ describe('Non-existing Image', () => {
 	test('Open a non-existing image', async () => {
 		await parser.open();
 		expect(await parser.getPageNum()).toBe(0);
-		await expect(() => parser.getPage(0)).rejects.toThrowError('Invalid page index: 0');
+		await expect(() => parser.getPage(0)).rejects.toThrow('Invalid page index: 0');
 	});
 
 	test('Read a non-existing image', async () => {
 		const closeFile = jest.spyOn(parser, 'closeFile');
 		await parser.close();
-		expect(closeFile).toBeCalledTimes(1);
+		expect(closeFile).toHaveBeenCalledTimes(1);
 		closeFile.mockRestore();
 	});
 });
